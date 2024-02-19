@@ -1,10 +1,35 @@
+import React from "react"
+import Autoplay from "embla-carousel-autoplay"
 import { Link } from "react-router-dom"
+
+import { buttonVariants } from "@/components/ui/button"
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion"
 import { Badge } from "../ui/badge"
+import { Card, CardContent } from "../ui/card"
+import { Carousel, CarouselApi, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "../ui/carousel"
 import { Separator } from "../ui/separator"
 
 export function HomePage() {
+  const [api, setApi] = React.useState<CarouselApi>()
+  const [current, setCurrent] = React.useState(0)
+  const [count, setCount] = React.useState(0)
+
+  const plugin = React.useRef(Autoplay({ delay: 5000, stopOnInteraction: true }))
+
+  React.useEffect(() => {
+    if (!api) {
+      return
+    }
+
+    setCount(api.scrollSnapList().length)
+    setCurrent(api.selectedScrollSnap() + 1)
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap() + 1)
+    })
+  }, [api])
+
   return (
     <div>
       <div className="bg-gray-50/80 py-12 lg:py-24">
@@ -23,7 +48,7 @@ export function HomePage() {
 
                 <div>
                   <div className="space-y-1">
-                    <p className="text-sm text-muted-foreground">Just a simple web dev.</p>
+                    <p className="text-sm text-muted-foreground">Just a special web dev.</p>
                   </div>
                   <Separator className="my-4" />
                 </div>
@@ -63,6 +88,211 @@ export function HomePage() {
                 </p>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+      <div className="bg-gray-100 py-12 lg:py-24">
+        <div className="container px-4 md:px-6">
+          <div className="grid justify-center gap-8 lg:gap-12">
+            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+              <div className="space-y-2">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">my stack</h2>
+                <p className="max-w-[900px] text-gray-500 dark:text-gray-400 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                  Here are some of the technologies and tools I use to bring my web projects to life
+                </p>
+              </div>
+            </div>
+            <div className="max-w-screen-md">
+              <Accordion className="group" type="single" collapsible>
+                <AccordionItem value="item-1">
+                  <AccordionTrigger>
+                    <div className="flex items-center space-x-2">
+                      <IconReact className="h-6 w-6 animate-spin group-hover:animate-none" />
+                      <span>React</span>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    State lifting, props, context, what a powerfull framework. I just love it. 🫶
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+              <Accordion className="group" type="single" collapsible>
+                <AccordionItem value="item-1">
+                  <AccordionTrigger>
+                    <div className="flex items-center space-x-2">
+                      <IconBxlNodejs className="animate-wave h-6 w-6 group-hover:animate-none" />
+                      <span>Node.js</span>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    Thank you Ryan Dahl. Learning Javascript is so usefull. Frontend and Backend can finally bring back
+                    together. 🚀
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+              <Accordion className="group" type="single" collapsible>
+                <AccordionItem value="item-1">
+                  <AccordionTrigger>
+                    <div className="flex items-center space-x-2">
+                      <IconTypescript className="hover:duration-1)00 h-6 w-6 animate-[bounce_2s_ease-in-out_infinite] hover:transition group-hover:animate-none" />
+                      <span>Typescript</span>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    Vital. Code comprehension, get bounce easier in a new project. It's a matter of reading code. 📚
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+              <Accordion className="group" type="single" collapsible>
+                <AccordionItem value="item-1">
+                  <AccordionTrigger>
+                    <div className="flex items-center space-x-2">
+                      <IconBxlMongodb className="animate h-6 w-6 transition duration-150 group-hover:animate-none" />
+                      <span>MongoDB</span>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    Manipulable database. Collection is the art of MongoDB. Let's store some data ! 📦
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+              <Accordion className="group" type="single" collapsible>
+                <AccordionItem value="item-1">
+                  <AccordionTrigger>
+                    <div className="flex items-center space-x-2">
+                      <IconBxlTailwindCss className="animate h-6 w-6 transition duration-150 group-hover:animate-none" />
+                      <span>Tailwind CSS</span>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent>No need to introduce it. Shortcut to CSS, it's a must have. 🎨</AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
+            <div className="mx-auto grid max-w-sm items-start gap-1 sm:max-w-4xl md:gap-12 lg:max-w-5xl lg:grid-cols-2">
+              <div className="flex items-center space-x-2">
+                <CodepenIcon className="h-6 w-6" />
+                <span>CSS3</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="py-12 lg:py-24">
+        <div className="container px-4 md:px-6">
+          <div className="grid gap-8 lg:gap-12">
+            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+              <div className="space-y-2">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">my projects</h2>
+                <p className="max-w-[900px] text-gray-500 dark:text-gray-400 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                  I'm a passionate web developer with a love for creating stunning and user-friendly websites. My goal
+                  is to make the web a more beautiful and accessible place for everyone.
+                </p>
+              </div>
+            </div>
+            <div>
+              <div className="flex flex-row-reverse justify-center">
+                <Carousel
+                  plugins={[plugin.current]}
+                  className="w-full max-w-xs"
+                  onMouseEnter={plugin.current.stop}
+                  onMouseLeave={plugin.current.reset}
+                >
+                  <CarouselContent>
+                    <CarouselItem>
+                      <div className="p-1">
+                        <Card>
+                          <CardContent className="flex aspect-square flex-col items-center justify-center p-6">
+                            <img
+                              className="h-full w-full object-cover"
+                              src="public/workout-journal-pic.png"
+                              alt="workout-journal-pic"
+                            />
+                            <Separator className="my-4" />
+                            <Link
+                              className={buttonVariants({ variant: "link" })}
+                              to="https://workout-journal-pro.netlify.app/"
+                            >
+                              Workout Journal
+                            </Link>
+                          </CardContent>
+                        </Card>
+                      </div>
+                    </CarouselItem>
+                    <CarouselItem>
+                      <div className="p-1">
+                        <Card>
+                          <CardContent className="flex aspect-square flex-col items-center justify-center p-6">
+                            <img
+                              className="h-full w-full object-cover"
+                              src="public/memo-movies-pic.png"
+                              alt="memo-movies-pic"
+                            />
+                            <Separator className="my-4" />
+                            <Link
+                              className={buttonVariants({ variant: "link" })}
+                              to="https://memomovies-doncarlos.netlify.app/"
+                            >
+                              Memo Movies
+                            </Link>
+                          </CardContent>
+                        </Card>
+                      </div>
+                    </CarouselItem>
+                    <CarouselItem>
+                      <div className="p-1">
+                        <Card>
+                          <CardContent className="flex aspect-square flex-col items-center justify-center p-6">
+                            <img
+                              className="h-full w-full object-cover"
+                              src="public/recipe-book-pic.png"
+                              alt="recipe-book-pic"
+                            />
+                            <Separator className="my-4" />
+                            <Link
+                              className={buttonVariants({ variant: "link" })}
+                              to="https://recipe-book-app-nine.vercel.app/"
+                            >
+                              Recipe Book
+                            </Link>
+                          </CardContent>
+                        </Card>
+                      </div>
+                    </CarouselItem>
+                    <CarouselItem>
+                      <div className="p-1">
+                        <Card>
+                          <CardContent className="flex aspect-square flex-col items-center justify-center p-6">
+                            <img
+                              className="h-full w-full object-cover"
+                              src="public/duck-hunt-pic.png"
+                              alt="duck-hunt-pic"
+                            />
+                            <Separator className="my-4" />
+                            <Link
+                              className={buttonVariants({ variant: "link" })}
+                              to="https://duck-hunt-seven.vercel.app/"
+                            >
+                              Duck Hunt
+                            </Link>
+                          </CardContent>
+                        </Card>
+                      </div>
+                    </CarouselItem>
+                    <CarouselItem>
+                      <div className="p-1">
+                        <Card>
+                          <CardContent className="flex aspect-square items-center justify-center p-6">
+                            <span className="text-4xl font-semibold">Project 2</span>
+                          </CardContent>
+                        </Card>
+                      </div>
+                    </CarouselItem>
+                  </CarouselContent>
+                  <CarouselPrevious />
+                  <CarouselNext />
+                </Carousel>
+              </div>
+            </div>
             <div className="mx-auto grid max-w-sm items-start gap-1 sm:max-w-4xl md:gap-12 lg:max-w-5xl">
               <div className="grid gap-1">
                 <h3 className="text-lg font-bold">Skills</h3>
@@ -88,128 +318,7 @@ export function HomePage() {
           </div>
         </div>
       </div>
-      <div className="bg-gray-100 py-12 lg:py-24">
-        <div className="container px-4 md:px-6">
-          <div className="grid gap-8 lg:gap-12">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">My Stack</h2>
-                <p className="max-w-[900px] text-gray-500 dark:text-gray-400 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Here are some of the technologies and tools I use to bring my web projects to life.
-                </p>
-              </div>
-            </div>
-            <Accordion className="group" type="single" collapsible>
-              <AccordionItem value="item-1">
-                <AccordionTrigger>
-                  <div className="flex items-center space-x-2">
-                    <IconReact className="h-6 w-6 animate-spin group-hover:animate-none" />
-                    <span>React</span>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent>
-                  State lifting, props, context, what a powerfull framework. I just love it. 🫶
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-            <Accordion className="group" type="single" collapsible>
-              <AccordionItem value="item-1">
-                <AccordionTrigger>
-                  <div className="flex items-center space-x-2">
-                    <IconBxlNodejs className="animate-wave h-6 w-6 group-hover:animate-none" />
-                    <span>Node.js</span>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent>
-                  Thank you Ryan Dahl. Learning Javascript is so usefull. Frontend and Backend can finally bring back
-                  together.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-            <Accordion className="group" type="single" collapsible>
-              <AccordionItem value="item-1">
-                <AccordionTrigger>
-                  <div className="flex items-center space-x-2">
-                    <IconTypescript className="hover:duration-1)00 h-6 w-6 animate-[bounce_2s_ease-in-out_infinite] hover:transition group-hover:animate-none" />
-                    <span>Typescript</span>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent>
-                  Vital. Code comprehension, get bounce easier in a new project. It's a matter of reading code.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-            <Accordion className="group" type="single" collapsible>
-              <AccordionItem value="item-1">
-                <AccordionTrigger>
-                  <div className="flex items-center space-x-2">
-                    <IconBxlMongodb className="animate h-6 w-6 transition duration-150 group-hover:animate-none" />
-                    <span>MongoDB</span>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent>
-                  Manipulable database. Collection is the art of MongoDB. Let's store some data !
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-            <Accordion className="group" type="single" collapsible>
-              <AccordionItem value="item-1">
-                <AccordionTrigger>
-                  <div className="flex items-center space-x-2">
-                    <IconBxlTailwindCss className="animate h-6 w-6 transition duration-150 group-hover:animate-none" />
-                    <span>Tailwind CSS</span>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent>
-                  No need to introduce it. database. Collection is the art of MongoDB. Let's store some data !
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-            <div className="mx-auto grid max-w-sm items-start gap-1 sm:max-w-4xl md:gap-12 lg:max-w-5xl lg:grid-cols-2">
-              <div className="flex items-center space-x-2">
-                <CodepenIcon className="h-6 w-6" />
-                <span>CSS3</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <CodepenIcon className="h-6 w-6" />
-                <span>JavaScript</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <DribbbleIcon className="h-6 w-6" />
-                <span>React</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <CodepenIcon className="h-6 w-6" />
-                <span>Next.js</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <WindIcon className="h-6 w-6" />
-                <span>Tailwind CSS</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-  )
-}
-
-function FacebookIcon(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-    </svg>
   )
 }
 
