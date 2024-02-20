@@ -528,6 +528,7 @@ function IconLogoShadcn(props: React.SVGProps<SVGSVGElement>) {
       height="20"
       viewBox="0 0 48 48"
       preserveAspectRatio="xMidYMid meet"
+      {...props}
     >
       <g transform="translate(0.000000,48.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
         <path
