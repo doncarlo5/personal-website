@@ -20,6 +20,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "../componen
 import { Separator } from "../components/ui/separator"
 
 export function HomePage() {
+  // @ts-ignore
   const [api, setApi] = React.useState<CarouselApi>()
   // @ts-ignore
   const [current, setCurrent] = React.useState(0)
