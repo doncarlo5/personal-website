@@ -65,9 +65,9 @@ export function HomePage() {
                   <Separator className="my-4" />
                 </div>
                 <p className="max-w-[900px] text-gray-500 dark:text-gray-400 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  I'm a French web developer with a penchant for elegant design and a fascination for all things tech. I
-                  thrive on the challenge of turning code into visually stunning creations. Join me on this journey as I
-                  seek new opportunities to bring my skills to the forefront of innovation! 💡{" "}
+                  French developer with a penchant for elegant design and a fascination for all things tech. I thrive on
+                  the challenge of turning code into visually stunning creations. Join me on this journey as I seek new
+                  opportunities to bring my skills to the forefront of innovation! 💡{" "}
                 </p>
               </div>
               <div className="space-x-4">
@@ -209,7 +209,7 @@ export function HomePage() {
                           <CardContent className="flex aspect-square flex-col items-center justify-center p-6">
                             <img
                               className="h-full w-full object-cover"
-                              src="public/workout-journal-pic.png"
+                              src="/static/images/workout-journal-pic.png"
                               alt="workout-journal-pic"
                             />
                             <Separator className="my-4" />
@@ -229,7 +229,7 @@ export function HomePage() {
                           <CardContent className="flex aspect-square flex-col items-center justify-center p-6">
                             <img
                               className="h-full w-full object-cover"
-                              src="public/memo-movies-pic.png"
+                              src="/static/images/memo-movies-pic.png"
                               alt="memo-movies-pic"
                             />
                             <Separator className="my-4" />
@@ -249,7 +249,7 @@ export function HomePage() {
                           <CardContent className="flex aspect-square flex-col items-center justify-center p-6">
                             <img
                               className="h-full w-full object-cover"
-                              src="public/recipe-book-pic.png"
+                              src="/static/images/recipe-book-pic.png"
                               alt="recipe-book-pic"
                             />
                             <Separator className="my-4" />
@@ -269,7 +269,7 @@ export function HomePage() {
                           <CardContent className="flex aspect-square flex-col items-center justify-center p-6">
                             <img
                               className="h-full w-full object-cover"
-                              src="public/duck-hunt-pic.png"
+                              src="/static/images/duck-hunt-pic.png"
                               alt="duck-hunt-pic"
                             />
                             <Separator className="my-4" />
@@ -279,15 +279,6 @@ export function HomePage() {
                             >
                               Duck Hunt
                             </Link>
-                          </CardContent>
-                        </Card>
-                      </div>
-                    </CarouselItem>
-                    <CarouselItem>
-                      <div className="p-1">
-                        <Card>
-                          <CardContent className="flex aspect-square items-center justify-center p-6">
-                            <span className="text-4xl font-semibold">Project 2</span>
                           </CardContent>
                         </Card>
                       </div>
