@@ -3,7 +3,7 @@ import Autoplay from "embla-carousel-autoplay"
 import AnchorLink from "react-anchor-link-smooth-scroll"
 import { Link } from "react-router-dom"
 
-import { Button, buttonVariants } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion"
 import { Badge } from "../components/ui/badge"
