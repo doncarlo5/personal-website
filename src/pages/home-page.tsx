@@ -5,21 +5,26 @@ import { Link } from "react-router-dom"
 
 import { Button, buttonVariants } from "@/components/ui/button"
 
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion"
-import { Badge } from "../ui/badge"
-import { Card, CardContent } from "../ui/card"
-import { Carousel, CarouselApi, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "../ui/carousel"
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "../ui/collapsible"
-import { Separator } from "../ui/separator"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion"
+import { Badge } from "../components/ui/badge"
+import { Card, CardContent } from "../components/ui/card"
+import {
+  Carousel,
+  CarouselApi,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "../components/ui/carousel"
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "../components/ui/collapsible"
+import { Separator } from "../components/ui/separator"
 
 export function HomePage() {
   const [api, setApi] = React.useState<CarouselApi>()
+  // @ts-ignore
   const [current, setCurrent] = React.useState(0)
+  // @ts-ignore
   const [count, setCount] = React.useState(0)
-
-  setApi(api)
-  setCurrent(current)
-  setCount(count)
 
   const plugin = React.useRef(Autoplay({ delay: 5000, stopOnInteraction: true }))
 
@@ -65,12 +70,13 @@ export function HomePage() {
                 </p>
               </div>
               <div className="space-x-4">
-                <Button variant="secondary">
-                  <AnchorLink href="#projects">Projects</AnchorLink>
-                </Button>
-                <Button variant="secondary">
-                  <AnchorLink href="#contact">Contact me</AnchorLink>
-                </Button>
+                <AnchorLink className={buttonVariants({ variant: "outline" })} href="#projects">
+                  Projects
+                </AnchorLink>
+
+                <AnchorLink className={buttonVariants({ variant: "outline" })} href="#contact">
+                  Contact me
+                </AnchorLink>
               </div>
             </div>
           </div>
@@ -167,12 +173,6 @@ export function HomePage() {
                   <AccordionContent>No need to introduce it. Shortcut to CSS, it's a must have. 🎨</AccordionContent>
                 </AccordionItem>
               </Accordion>
-            </div>
-            <div className="mx-auto grid max-w-sm items-start gap-1 sm:max-w-4xl md:gap-12 lg:max-w-5xl lg:grid-cols-2">
-              <div className="flex items-center space-x-2">
-                <CodepenIcon className="h-6 w-6" />
-                <span>CSS3</span>
-              </div>
             </div>
           </div>
         </div>
@@ -302,11 +302,9 @@ export function HomePage() {
                 <h3 className="text-lg font-bold">Features used in my projects</h3>
                 <div className=" grid-cols-4 justify-center">
                   <Collapsible>
-                    <CollapsibleTrigger>
-                      <Button variant="ghost" className="">
-                        "dependencies"
-                        <IconChevronCompactDown className=" ml-2 h-5 w-5" />
-                      </Button>
+                    <CollapsibleTrigger className={`${buttonVariants({ variant: "ghost" })}`}>
+                      "dependencies"
+                      <IconChevronCompactDown />
                     </CollapsibleTrigger>
                     <CollapsibleContent className="m-3 gap-2 space-x-2 space-y-2">
                       <Badge>Radix UI library</Badge>
@@ -322,11 +320,9 @@ export function HomePage() {
                     </CollapsibleContent>
                   </Collapsible>
                   <Collapsible>
-                    <CollapsibleTrigger>
-                      <Button variant="ghost" className="">
-                        "devDependencies"
-                        <IconChevronCompactDown className=" ml-2 h-5 w-5" />
-                      </Button>
+                    <CollapsibleTrigger className={`${buttonVariants({ variant: "ghost" })}`}>
+                      "devDependencies"
+                      <IconChevronCompactDown />
                     </CollapsibleTrigger>
                     <CollapsibleContent className="m-3 gap-2 space-x-2 space-y-2">
                       <Badge variant="outline">Prettier sort import</Badge>
@@ -357,59 +353,38 @@ export function HomePage() {
         <div className="container px-4 md:px-6">
           <div className="grid justify-center gap-8 lg:gap-12">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">reach me</h2>
-              </div>
-              <div className="grid gap-1">
-                <div>
-                  <div className="flex flex-col items-center gap-2">
-                    <Link
-                      to="https://github.com/doncarlo5"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`${buttonVariants({ variant: "outline" })} group`}
-                    >
-                      <IconGithub className="h-6 w-6 group-hover:animate-[wave_0.8s_ease-in-out_1]" />
-                    </Link>
-                    <Link
-                      to="https://www.linkedin.com/in/julienthomaspro/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`${buttonVariants({ variant: "outline" })} group`}
-                    >
-                      <IconLogoLinkedin className="h-6 w-6 group-hover:animate-[wave_0.8s_ease-in-out_1]" />
-                    </Link>
+              <section id="contact">
+                <div className="space-y-2">
+                  <h2 className="mb-6 text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">reach me</h2>
+                </div>
+                <div className="grid gap-1">
+                  <div>
+                    <div className="flex flex-col items-center gap-2">
+                      <Link
+                        to="https://github.com/doncarlo5"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`${buttonVariants({ variant: "outline" })} group`}
+                      >
+                        <IconGithub className="h-6 w-6 group-hover:animate-[wave_0.8s_ease-in-out_1]" />
+                      </Link>
+                      <Link
+                        to="https://www.linkedin.com/in/julienthomaspro/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`${buttonVariants({ variant: "outline" })} group`}
+                      >
+                        <IconLogoLinkedin className="h-6 w-6 group-hover:animate-[wave_0.8s_ease-in-out_1]" />
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </section>
             </div>
           </div>
         </div>
       </div>
     </div>
-  )
-}
-
-function CodepenIcon(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2" />
-      <line x1="12" x2="12" y1="22" y2="15.5" />
-      <polyline points="22 8.5 12 15.5 2 8.5" />
-      <polyline points="2 15.5 12 8.5 22 15.5" />
-      <line x1="12" x2="12" y1="2" y2="8.5" />
-    </svg>
   )
 }
 
