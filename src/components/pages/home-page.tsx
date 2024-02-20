@@ -1,19 +1,25 @@
 import React from "react"
 import Autoplay from "embla-carousel-autoplay"
+import AnchorLink from "react-anchor-link-smooth-scroll"
 import { Link } from "react-router-dom"
 
-import { buttonVariants } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion"
 import { Badge } from "../ui/badge"
 import { Card, CardContent } from "../ui/card"
 import { Carousel, CarouselApi, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "../ui/carousel"
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "../ui/collapsible"
 import { Separator } from "../ui/separator"
 
 export function HomePage() {
   const [api, setApi] = React.useState<CarouselApi>()
   const [current, setCurrent] = React.useState(0)
   const [count, setCount] = React.useState(0)
+
+  setApi(api)
+  setCurrent(current)
+  setCount(count)
 
   const plugin = React.useRef(Autoplay({ delay: 5000, stopOnInteraction: true }))
 
@@ -29,6 +35,8 @@ export function HomePage() {
       setCurrent(api.selectedScrollSnap() + 1)
     })
   }, [api])
+
+  const [isOpen, setIsOpen] = React.useState(false)
 
   return (
     <div>
@@ -59,18 +67,12 @@ export function HomePage() {
                 </p>
               </div>
               <div className="space-x-4">
-                <Link
-                  className="inline-flex h-10 items-center justify-center rounded-md border border-gray-200 border-gray-200 bg-white px-8 text-sm font-medium shadow-sm transition-colors hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-800 dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-950 dark:hover:text-gray-50 dark:focus-visible:ring-gray-300"
-                  to="/"
-                >
-                  My Projects
-                </Link>
-                <Link
-                  className="inline-flex h-10 items-center justify-center rounded-md border border-gray-200 border-gray-200 bg-white px-8 text-sm font-medium shadow-sm transition-colors hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-800 dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-950 dark:hover:text-gray-50 dark:focus-visible:ring-gray-300"
-                  to="/"
-                >
-                  Contact Me
-                </Link>
+                <Button variant="secondary">
+                  <AnchorLink href="#projects">Projects</AnchorLink>
+                </Button>
+                <Button variant="secondary">
+                  <AnchorLink href="#contact">Contact me</AnchorLink>
+                </Button>
               </div>
             </div>
           </div>
@@ -120,7 +122,7 @@ export function HomePage() {
                 <AccordionItem value="item-1">
                   <AccordionTrigger>
                     <div className="flex items-center space-x-2">
-                      <IconBxlNodejs className="animate-wave h-6 w-6 group-hover:animate-none" />
+                      <IconBxlNodejs className="h-6 w-6 animate-wave group-hover:animate-none" />
                       <span>Node.js</span>
                     </div>
                   </AccordionTrigger>
@@ -182,11 +184,15 @@ export function HomePage() {
           <div className="grid gap-8 lg:gap-12">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">my projects</h2>
-                <p className="max-w-[900px] text-gray-500 dark:text-gray-400 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  I'm a passionate web developer with a love for creating stunning and user-friendly websites. My goal
-                  is to make the web a more beautiful and accessible place for everyone.
-                </p>
+                <section id="projects">
+                  <h2 id="projects" className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                    my projects
+                  </h2>
+                  <p className="max-w-[900px] text-gray-500 dark:text-gray-400 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                    I'm a passionate web developer with a love for creating stunning and user-friendly websites. My goal
+                    is to make the web a more beautiful and accessible place for everyone.
+                  </p>
+                </section>
               </div>
             </div>
             <div>
@@ -295,24 +301,88 @@ export function HomePage() {
             </div>
             <div className="mx-auto grid max-w-sm items-start gap-1 sm:max-w-4xl md:gap-12 lg:max-w-5xl">
               <div className="grid gap-1">
-                <h3 className="text-lg font-bold">Skills</h3>
-                <div className="flex justify-center gap-2">
-                  <Badge>React</Badge>
-                  <Badge>NodeJS</Badge>
-                  <Badge>Typescript</Badge>
-                  <Badge>Tailwind</Badge>
-                  <Badge>MongoDB</Badge>
+                <h3 className="text-lg font-bold">Features used in my projects</h3>
+                <div className=" grid-cols-4 justify-center">
+                  <Collapsible>
+                    <CollapsibleTrigger>
+                      <Button variant="ghost" className="">
+                        "dependencies"
+                        <IconChevronCompactDown className=" ml-2 h-5 w-5" />
+                      </Button>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent className="m-3 gap-2 space-x-2 space-y-2">
+                      <Badge>Radix UI library</Badge>
+                      <Badge>shadcn/ui</Badge>
+                      <Badge>Axios</Badge>
+                      <Badge>Lucid React</Badge>
+                      <Badge>React Router Dom</Badge>
+                      <Badge>Morgan</Badge>
+                      <Badge>Jsonwebtoken</Badge>
+                      <Badge>Express</Badge>
+                      <Badge>Bcrypt</Badge>
+                      <Badge>Dotenv</Badge>{" "}
+                    </CollapsibleContent>
+                  </Collapsible>
+                  <Collapsible>
+                    <CollapsibleTrigger>
+                      <Button variant="ghost" className="">
+                        "devDependencies"
+                        <IconChevronCompactDown className=" ml-2 h-5 w-5" />
+                      </Button>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent className="m-3 gap-2 space-x-2 space-y-2">
+                      <Badge variant="outline">Prettier sort import</Badge>
+                      <Badge variant="outline">Typescript Eslint</Badge>
+                      <Badge variant="outline">Prettier Tailwind CSS</Badge>
+                      <Badge variant="outline">Autoprefixer</Badge>
+                      <Badge variant="outline">MongoDB</Badge>
+                      <Badge variant="outline">Nodemon</Badge>
+                    </CollapsibleContent>
+                  </Collapsible>
                 </div>
               </div>
-              <div className="grid gap-1">
+              {/* <div className="grid gap-1">
                 <h3 className="text-lg font-bold">Experience</h3>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
                   Developed various web applications and worked on multiple client projects.
                 </p>
-              </div>
-              <div className="grid gap-1">
+              </div> */}
+              {/* <div className="grid gap-1">
                 <h3 className="text-lg font-bold">Education</h3>
                 <p className="text-sm text-gray-500 dark:text-gray-400">Bachelor's Degree in Computer Science</p>
+              </div> */}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="bg-gray-100 py-12 lg:py-24">
+        <div className="container px-4 md:px-6">
+          <div className="grid justify-center gap-8 lg:gap-12">
+            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+              <div className="space-y-2">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">reach me</h2>
+              </div>
+              <div className="grid gap-1">
+                <div>
+                  <div className="flex flex-col items-center gap-2">
+                    <Link
+                      to="https://github.com/doncarlo5"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`${buttonVariants({ variant: "outline" })} group`}
+                    >
+                      <IconGithub className="h-6 w-6 group-hover:animate-[wave_0.8s_ease-in-out_1]" />
+                    </Link>
+                    <Link
+                      to="https://www.linkedin.com/in/julienthomaspro/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`${buttonVariants({ variant: "outline" })} group`}
+                    >
+                      <IconLogoLinkedin className="h-6 w-6 group-hover:animate-[wave_0.8s_ease-in-out_1]" />
+                    </Link>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -431,6 +501,41 @@ function IconBxlTailwindCss(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" height="1em" width="1em" {...props}>
       <path d="M18.5 9.51a4.22 4.22 0 01-1.91-1.34A5.77 5.77 0 0012 6a4.72 4.72 0 00-5 4 3.23 3.23 0 013.5-1.49 4.32 4.32 0 011.91 1.35A5.77 5.77 0 0017 12a4.72 4.72 0 005-4 3.2 3.2 0 01-3.5 1.51zm-13 4.98a4.22 4.22 0 011.91 1.34A5.77 5.77 0 0012 18a4.72 4.72 0 005-4 3.23 3.23 0 01-3.5 1.49 4.32 4.32 0 01-1.91-1.35A5.8 5.8 0 007 12a4.72 4.72 0 00-5 4 3.2 3.2 0 013.5-1.51z" />
+    </svg>
+  )
+}
+
+function IconGithub(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 1024 1024" fill="currentColor" height="1em" width="1em" {...props}>
+      <path d="M511.6 76.3C264.3 76.2 64 276.4 64 523.5 64 718.9 189.3 885 363.8 946c23.5 5.9 19.9-10.8 19.9-22.2v-77.5c-135.7 15.9-141.2-73.9-150.3-88.9C215 726 171.5 718 184.5 703c30.9-15.9 62.4 4 98.9 57.9 26.4 39.1 77.9 32.5 104 26 5.7-23.5 17.9-44.5 34.7-60.8-140.6-25.2-199.2-111-199.2-213 0-49.5 16.3-95 48.3-131.7-20.4-60.5 1.9-112.3 4.9-120 58.1-5.2 118.5 41.6 123.2 45.3 33-8.9 70.7-13.6 112.9-13.6 42.4 0 80.2 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.3-43.9 2.9 7.7 24.7 58.3 5.5 118 32.4 36.8 48.9 82.7 48.9 132.3 0 102.2-59 188.1-200 212.9a127.5 127.5 0 0138.1 91v112.5c.8 9 0 17.9 15 17.9 177.1-59.7 304.6-227 304.6-424.1 0-247.2-200.4-447.3-447.5-447.3z" />
+    </svg>
+  )
+}
+
+function IconLogoLinkedin(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 512 512" fill="currentColor" height="1em" width="1em" {...props}>
+      <path d="M444.17 32H70.28C49.85 32 32 46.7 32 66.89v374.72C32 461.91 49.85 480 70.28 480h373.78c20.54 0 35.94-18.21 35.94-38.39V66.89C480.12 46.7 464.6 32 444.17 32zm-273.3 373.43h-64.18V205.88h64.18zM141 175.54h-.46c-20.54 0-33.84-15.29-33.84-34.43 0-19.49 13.65-34.42 34.65-34.42s33.85 14.82 34.31 34.42c-.01 19.14-13.31 34.43-34.66 34.43zm264.43 229.89h-64.18V296.32c0-26.14-9.34-44-32.56-44-17.74 0-28.24 12-32.91 23.69-1.75 4.2-2.22 9.92-2.22 15.76v113.66h-64.18V205.88h64.18v27.77c9.34-13.3 23.93-32.44 57.88-32.44 42.13 0 74 27.77 74 87.64z" />
+    </svg>
+  )
+}
+
+function IconGmail(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" height="1em" width="1em" {...props}>
+      <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 010 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z" />
+    </svg>
+  )
+}
+
+function IconChevronCompactDown(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg fill="currentColor" viewBox="0 0 16 16" height="1em" width="1em" {...props}>
+      <path
+        fillRule="evenodd"
+        d="M1.553 6.776a.5.5 0 01.67-.223L8 9.44l5.776-2.888a.5.5 0 11.448.894l-6 3a.5.5 0 01-.448 0l-6-3a.5.5 0 01-.223-.67z"
+      />
     </svg>
   )
 }
