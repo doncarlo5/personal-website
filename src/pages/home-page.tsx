@@ -426,7 +426,7 @@ export function HomePage() {
                       >
                         <IconLogoLinkedin className="h-6 w-6 group-hover:animate-[wave_0.8s_ease-in-out_1]" />
                       </Link>
-                      <a href="mailto:pro.julien.thomas@gmail.com">By Mail</a>
+                      {/* <a href="mailto:pro.julien.thomas@gmail.com">By Mail</a> */}
                     </div>
                   </div>
                 </div>
