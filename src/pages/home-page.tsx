@@ -284,8 +284,8 @@ export function HomePage() {
                           </div>
                         </AccordionTrigger>
                         <AccordionContent>
-                          Vital. Code comprehension, get bounce easier in a new project. It's a matter of reading code.
-                          📚
+                          Vital. Code comprehension, get bounce easier into a new project. It's a matter of reading
+                          code. 📚
                         </AccordionContent>
                       </AccordionItem>
                     </Accordion>
@@ -426,6 +426,7 @@ export function HomePage() {
                       >
                         <IconLogoLinkedin className="h-6 w-6 group-hover:animate-[wave_0.8s_ease-in-out_1]" />
                       </Link>
+                      <a href="mailto:pro.julien.thomas@gmail.com">By Mail</a>
                     </div>
                   </div>
                 </div>
